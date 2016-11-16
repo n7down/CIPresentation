@@ -22,7 +22,7 @@ Team City should now be running on `<docker-ip>:8111` and Artifactory on `<docke
 ## How to look at the slides
 1. Clone this repository
 2. Goto the `slides` directory
-3. Run `mdp <slide.md>` (after mdp was installed) or you can just look at the `<slide.md>`
+3. Run `mdp <slide.md>` (after mdp was installed) or you can just look at the `<slide.md>` if you are okay with reading markdown.
 
 ## Todo
 - [x] Enviroment setup instructions
