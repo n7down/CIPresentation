@@ -9,6 +9,6 @@ public class Vector2Test {
 
   @Test public void testGetY() {
     Vector2 vector2 = new Vector2(1.0f, 2.0f);
-    assertTrue("getY should return 2.0", vector2.getY() == 2.0f);
+    assertTrue("getY should return 2.0", vector2.getY() == 1.0f);
   }
 }

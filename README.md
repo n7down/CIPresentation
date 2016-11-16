@@ -31,6 +31,8 @@ A presentation on Artifactory and all of the pieces that go into it.
 23. Click `Install suggested plugins`.
 24. Proceed with the rest of the Jenkins setup through the browser.
 
+25. Install `Html Publisher Plugin`.
+
 Team City should now be running on `<docker-ip>:8111` and Artifactory on `<docker-ip>:8112`.
 
 Note: Artifactory Admin username and password are `admin` and `password` respectively.
