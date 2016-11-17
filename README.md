@@ -1,4 +1,4 @@
-# Artifactory Presentation
+# Continuous Integration Presentation
 A presentation on Artifactory and all of the pieces that go into it.
 
 ## Prerequisites
@@ -36,7 +36,8 @@ Note: Artifactory Admin username and password are `admin` and `password` respect
 ## Configure Jenkins Project
 1. From `Jenkins Home Page` click on `New Item`.
 2. Give the project a name, select `Freestyle Project` and click `Ok`.
-3. For `Source Code Management` select `git`, add the `Repository URL`, `Credentials` and branches.
+3. Take this project and fork or clone it.
+3. For `Source Code Management` select `git`, add the `Repository URL`, `Credentials` and branch to `dev`.
 4. Under `Build Triggers` select `Poll SCM` and enter `H/5 * * * *`.
 5. Under `Build` click `Add build step` and add `Invoke Gradle script`.
 6. Select `Use Gradle Wrapper`, check mark `Make gradlew executable` and `From Root Build Script Dir`.
@@ -46,7 +47,15 @@ Note: Artifactory Admin username and password are `admin` and `password` respect
 10. In the `Index page[s]` add `index.html`.
 11. In the `Report title` add `Test Cases Report`.
 
-## Setup Team City - if you want to
+## Running the project
+The Jenkins project will check every 5 mins on the `dev` branch and see if there was any changes.
+This can be executed by making changes to this project or clicking `Build Now` for the Jenkins Project.
+If so, it will build and test the project.
+You can add classes in `src/main/java` and/or junit test cases in `src/main/test` to see how this works.
+If the tests passes it will publish the jar to Artifactory which you will see in the `Artifactory Repository Browser`.
+Have fun.
+
+## Setup Team City - if you want to, this is not completed
 1. Run `docker run --name postgres -e POSTGRES_PASSWORD=password -p 5432:5432 -d postgres` to start the postgresql server.
 2. Run `docker run -it --name teamcity -p 8111:8111 -d jetbrains/teamcity-server` to start the team city server.
 3. Run `docker-machine ip default` and remember that IP. The IP will be referenced in this README as `<docker-ip>`. NOTE: if you are a OSX user you will not have to run this command - `<docker-ip>` will be `localhost` for those users.
