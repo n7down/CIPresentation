@@ -5,7 +5,16 @@ A presentation on Artifactory and all of the pieces that go into it.
 1. [Docker](https://docs.docker.com/engine/installation)
 2. [mpd](https://github.com/visit1985/mdp) - if you want to look at slides
 
-## Setup
+## Getting Started
+1. Install Docker
+2. Run the following commands in the Docker Terminal:
+
+```
+docker pull docker.bintray.io/jfrog/artifactory-oss
+docker pull jenkins
+```
+
+## Setup Jenkins and Artifactory
 1. Clone this repository.
 2. Install Docker.
 3. Open up Docker terminal.
@@ -37,12 +46,7 @@ Note: Artifactory Admin username and password are `admin` and `password` respect
 10. In the `Index page[s]` add `index.html`.
 11. In the `Report title` add `Test Cases Report`.
 
-## How to look at the slides
-1. Clone this repository.
-2. Goto the `slides` directory.
-3. Run `mdp <slide.md>` (after mdp was installed) or you can just look at the `<slide.md>` if you are okay with reading markdown.
-
-## How to run Team City in docker (ran into memory issues with this)
+## Setup Team City - if you want to
 1. Run `docker run --name postgres -e POSTGRES_PASSWORD=password -p 5432:5432 -d postgres` to start the postgresql server.
 2. Run `docker run -it --name teamcity -p 8111:8111 -d jetbrains/teamcity-server` to start the team city server.
 3. Run `docker-machine ip default` and remember that IP. The IP will be referenced in this README as `<docker-ip>`. NOTE: if you are a OSX user you will not have to run this command - `<docker-ip>` will be `localhost` for those users.
@@ -57,6 +61,11 @@ Note: Artifactory Admin username and password are `admin` and `password` respect
 12. In Team City click on `Agents` then `Unauthorized`.
 13. Authorize the `default` agent.
 14. Team City should now be running on `<docker-ip>:8111`.
+
+## How to look at the slides
+1. Clone this repository.
+2. Goto the `slides` directory.
+3. Run `mdp <slide.md>` (after mdp was installed) or you can just look at the `<slide.md>` if you are okay with reading markdown.
 
 ## Todo
 - [x] Enviroment setup instructions
