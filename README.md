@@ -1,5 +1,5 @@
 # Continuous Integration Presentation
-A presentation on Artifactory and all of the pieces that go into it.
+A presentation on continous integration using Jenkins and Artifactory.
 
 ## Prerequisites
 1. [Docker](https://docs.docker.com/engine/installation)
@@ -13,6 +13,11 @@ A presentation on Artifactory and all of the pieces that go into it.
 docker pull docker.bintray.io/jfrog/artifactory-oss
 docker pull jenkins
 ```
+
+## Using this project for the demostration
+1. This project is designed to be used for the CI demonstration instructed in this README.
+2. Please clone/fork to use this project for that reason.
+3. Have fun!
 
 ## Setup Jenkins and Artifactory
 1. Clone this repository.
@@ -53,7 +58,6 @@ This can be executed by making changes to this project or clicking `Build Now` f
 If so, it will build and test the project.
 You can add classes in `src/main/java` and/or junit test cases in `src/main/test` to see how this works.
 If the tests passes it will publish the jar to Artifactory which you will see in the `Artifactory Repository Browser`.
-Have fun.
 
 ## Setup Team City - if you want to, this is not completed
 1. Run `docker run --name postgres -e POSTGRES_PASSWORD=password -p 5432:5432 -d postgres` to start the postgresql server.
