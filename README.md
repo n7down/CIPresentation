@@ -18,7 +18,7 @@ A presentation on Artifactory and all of the pieces that go into it.
 9. Click `Install suggested plugins`.
 10. Proceed with the rest of the Jenkins setup through the browser.
 11. Install `Html Publisher Plugin` from `Jenkins home page` > `Manage Jenkins` > `Manage Plugins` > `Available Tab`.
-12. Filter for `Html Publisher Plugin` and check the checkbox next to the plugin and click `Install without restart`.
+12. Filter for the `Html Publisher Plugin`and check the checkbox next to the plugins and click `Install without restart`.
 
 Jenkins will be running on `<docker-ip>:8080` and Artifactory on `<docker-ip>:8082`.
 
