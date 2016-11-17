@@ -1,0 +1,133 @@
+apply plugin: "java"
+
+sourceCompatibility = 1.6
+sourceSets.main.java.srcDirs = [ "src/" ]
+
+project.ext.mainClassName = "com.n7down.exile.desktop.DesktopLauncher"
+project.ext.assetsDir = new File("../android/assets");
+
+task run(dependsOn: classes, type: JavaExec) {
+    main = project.mainClassName
+    classpath = sourceSets.main.runtimeClasspath
+    standardInput = System.in
+    workingDir = project.assetsDir
+    ignoreExitValue = true
+}
+
+task dist(type: Jar) {
+    from files(sourceSets.main.output.classesDir)
+    from files(sourceSets.main.output.resourcesDir)
+    from {configurations.compile.collect {zipTree(it)}}
+    from files(project.assetsDir);
+ 
+    manifest {
+        attributes 'Main-Class': project.mainClassName
+    }
+    
+    // baseName = "exile-desktop"
+}
+
+dist.dependsOn classes
+
+eclipse {
+    project {
+        name = appName + "-desktop"
+        linkedResource name: 'assets', type: '2', location: 'PARENT-1-PROJECT_LOC/android/assets'
+    }
+}
+
+task afterEclipseImport(description: "Post processing after project generation", group: "IDE") {
+  doLast {
+    def classpath = new XmlParser().parse(file(".classpath"))
+    new Node(classpath, "classpathentry", [ kind: 'src', path: 'assets' ]);
+    def writer = new FileWriter(file(".classpath"))
+    def printer = new XmlNodePrinter(new PrintWriter(writer))
+    printer.setPreserveWhitespace(true)
+    printer.print(classpath)
+  }
+}
+/* commented to import into eclipse mars
+buildscript {
+    repositories {
+        maven {
+            url 'http://192.168.0.14:8081/artifactory/plugins-release'
+            credentials {
+                username = "${artifactory_user}"
+                password = "${artifactory_password}"
+            }
+        }
+        
+    }
+    dependencies {
+        // Check for the latest version here: http://plugins.gradle.org/plugin/com.jfrog.artifactory
+        classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4+"
+    }
+} 
+
+allprojects {
+    apply plugin: "com.jfrog.artifactory"
+    apply plugin: 'maven'
+	apply plugin: 'maven-publish'
+}
+
+version = getBaseVersion()
+group = 'com.n7down.exile'
+
+artifactory {
+	// The base Artifactory URL if not overridden by the publisher/resolver
+    contextUrl = "${artifactory_contextUrl}"
+    publish {
+        repository {
+	        if (project.version.toString().endsWith('-SNAPSHOT')) {
+	       		repoKey = 'libs-snapshot-local'
+	       	}
+	       	else
+	       	{
+	          	repoKey = 'libs-release-local'
+	        }
+            username = "${artifactory_user}"
+            password = "${artifactory_password}"
+            maven = true
+        }
+        defaults {
+            publications ('mavenJava')
+        }
+    }
+    
+	//resolve {
+    //    repository {
+    //        repoKey = 'libs-release-local'
+    //        username = "${artifactory_user}"
+    //        password = "${artifactory_password}"
+    //        maven = true
+    //    }
+    //} 
+    
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            // from components.java
+            artifact dist
+        }
+    }
+}
+
+task buildPom {
+    pom {
+        project {
+            packaging 'com.n7down.exile'
+            name 'Exile'
+            url 'http://exile.adams.com'
+            licenses {
+                license {
+                    name 'The Apache Software License, Version 2.0'
+                    url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    distribution 'Exile'
+                }
+            }
+        }
+    }.writeTo("$buildDir/publications/mavenJava/pom-default.xml")
+}
+*/
