@@ -14,7 +14,7 @@ docker pull docker.bintray.io/jfrog/artifactory-oss
 docker pull jenkins
 ```
 
-## Using this project for the demostration
+## Using this project for the demonstration
 1. This project is designed to be used for the CI demonstration instructed in this README.
 2. Please clone/fork to use this project for that reason.
 3. Have fun!
