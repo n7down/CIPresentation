@@ -16,7 +16,7 @@ docker pull jenkins
 
 ## Using this project for the demonstration
 1. This project is designed to be used for the CI demonstration instructed in this README.
-2. Please clone/fork to use this project for that reason.
+2. Please clone/fork to use this project for use in the demonstration.
 3. Have fun!
 
 ## Setup Jenkins and Artifactory
